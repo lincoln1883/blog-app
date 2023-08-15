@@ -3,7 +3,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes
 
-
   after_save :update_counters, if: :saved_change_to_id?
   after_create :increment_posts_counter
   after_destroy :decrement_posts_counter
