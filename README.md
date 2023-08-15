@@ -27,7 +27,7 @@
 
 
 # Blog App <a name="about-project"></a>
-This project is project designed to build familiarity  with the rails programming language, we initialize the project and tinker with the various configurations to get it to work.
+This Blog app is designed to build familiarity with the Ruby on Rails Full-stack framework, and its concepts and vast echo system. We will cover databases using active records migrations and models using convention over configuration.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -49,7 +49,7 @@ This project is project designed to build familiarity  with the rails programmin
 
 ### Key Features <a name="key-features"></a>
 
-- **Yet to come**
+- [ ] Creating a data model.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,8 +114,6 @@ You can run tests with the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Nothing planned**
-- **Creating a data model.**
 - **Validations and Model specs.**
 - **Processing data in models.**
 - **Setup and controllers.**
@@ -134,7 +132,7 @@ You can run tests with the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/lincoln1883/morse-decoded/issues).
+Feel free to check the [issues page](https://github.com/lincoln1883/blog-app/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
