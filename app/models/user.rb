@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :comments, through: :posts
   has_many :likes, through: :posts
 
+  validates :name, presence: true, length: { minimum: 5 }
+  validates :posts_counter, type: Integer, comparison: { greater_than_or_equal_to: 0 }
+
   after_commit :update_posts_counter, if: :saved_change_to_id?
 
   def recent_posts(limit = 3)
