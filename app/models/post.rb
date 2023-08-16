@@ -3,6 +3,10 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes
 
+  validates :title, presence: true, length: { minimum: 3, maximum: 250 }
+  validates :likes_counter, type: Integer, comparison: { greater_than_or_equal_to: 0 }
+  validates :comments_counter, type: Integer, comparison: { greater_than_or_equal_to: 0 }
+
   after_save :update_counters, if: :saved_change_to_id?
   after_create :increment_posts_counter
   after_destroy :decrement_posts_counter
