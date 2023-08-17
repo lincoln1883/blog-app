@@ -48,7 +48,7 @@ RSpec.describe Post, type: :model do
       user.update(name: 'Updated Name')
       expect(user.posts_counter).to eq(0)
     end
-    it 'updates counters after save' do
+    it 'updates counters after create' do
       user = User.create(name: 'Test User', bio: 'it me again')
       post = Post.create(author: user, title: 'Test Title', text: 'Test Text')
 
