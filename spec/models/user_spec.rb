@@ -23,13 +23,13 @@ RSpec.describe User, type: :model do
       user = described_class.create(name: 'user', bio: 'hello world', posts_counter: 1)
       expect(user).to be_valid
     end
-    it 'is not valid without attributes' do
+    it 'is not valid without name' do
       user = described_class.create(name: nil)
       expect(user).not_to be_valid
     end
-    it 'is valid with attributes' do
-      user = described_class.create(name: 'user', bio: 'yes its me again', posts_counter: 0)
-      expect(user).to be_valid
+    it 'is not valid when is les than 3 chars' do
+      user = described_class.create(name: 'er', bio: 'yes its me again', posts_counter: 0)
+      expect(user).not_to be_valid
     end
     it 'is not valid when bio < 5 chars' do
       user = described_class.create(name: 'user', bio: 'y', posts_counter: 0)
