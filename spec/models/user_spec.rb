@@ -43,9 +43,9 @@ RSpec.describe User, type: :model do
   describe 'callbacks' do
     it 'updates posts_counter after commit if there are posts' do
       user = User.create(name: 'Test User', bio: 'it me again')
-      post1 = Post.create(author: user, title: 'Post 1')
-      post2 = Post.create(author: user, title: 'Post 2')
-      post3 = Post.create(author: user, title: 'Post 3')
+      Post.create(author: user, title: 'Post 1')
+      Post.create(author: user, title: 'Post 2')
+      Post.create(author: user, title: 'Post 3')
       user.update(name: 'Updated Name', bio: 'it me again')
       expect(user.posts_counter).to eq(user.posts.count)
     end
