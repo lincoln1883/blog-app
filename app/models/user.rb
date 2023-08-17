@@ -3,8 +3,9 @@ class User < ApplicationRecord
   has_many :comments, through: :posts
   has_many :likes, through: :posts
 
-  validates :name, presence: true, length: { minimum: 5 }
-  validates :posts_counter, type: Integer, comparison: { greater_than_or_equal_to: 0 }
+  validates :name, presence: true, length: { minimum: 3 }
+  validates :posts_counter, numericality: { integer: true, greater_than_or_equal_to: 0 }
+  validates :bio, presence: true, length: { minimum: 5, maximum: 500 }
 
   after_commit :update_posts_counter, if: :saved_change_to_id?
 
@@ -15,6 +16,6 @@ class User < ApplicationRecord
   private
 
   def update_posts_counter
-    update(posts_counter: posts.count) unless posts.empty?
+    update(posts_counter: posts.count)
   end
 end
