@@ -64,6 +64,10 @@ group :development do
   # gem "spring"
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0.0'
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
