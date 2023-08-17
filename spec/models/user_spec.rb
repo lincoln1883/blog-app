@@ -55,4 +55,36 @@ RSpec.describe User, type: :model do
       expect(user.posts_counter).to eq(0)
     end
   end
+  describe '#recent_posts' do
+    it 'returns a limited number of recent posts' do
+      user = User.create(name: 'Test User', bio: 'it me again lorem ipsum')
+      Post.create(title: 'Post 1', text: 'Text 1', author: user, created_at: 7.days.ago)
+      Post.create(title: 'Post 2', text: 'Text 2', author: user, created_at: 6.days.ago)
+      Post.create(title: 'Post 3', text: 'Text 3', author: user, created_at: 5.days.ago)
+      Post.create(title: 'Post 4', text: 'Text 4', author: user, created_at: 4.day.ago)
+      Post.create(title: 'Post 5', text: 'Text 5', author: user, created_at: 3.day.ago)
+      Post.create(title: 'Post 6', text: 'Text 6', author: user, created_at: 2.day.ago)
+      Post.create(title: 'Post 7', text: 'Text 7', author: user, created_at: 1.day.ago)
+      user.update(name: 'Updated Name', bio: 'it me again lorem ipsum')
+
+      recent_posts = user.recent_posts(3)
+      expect(recent_posts.count).to eq(3)
+      expect(recent_posts.map(&:title)).to eq(['Post 7', 'Post 6', 'Post 5'])
+    end
+    it 'returns a limited number of recent posts' do
+      user = User.create(name: 'Test User', bio: 'it me again lorem ipsum')
+      Post.create(title: 'Post 1', text: 'Text 1', author: user, created_at: 7.days.ago)
+      Post.create(title: 'Post 2', text: 'Text 2', author: user, created_at: 6.days.ago)
+      Post.create(title: 'Post 3', text: 'Text 3', author: user, created_at: 5.days.ago)
+      Post.create(title: 'Post 4', text: 'Text 4', author: user, created_at: 4.day.ago)
+      Post.create(title: 'Post 5', text: 'Text 5', author: user, created_at: 3.day.ago)
+      Post.create(title: 'Post 6', text: 'Text 6', author: user, created_at: 2.day.ago)
+      Post.create(title: 'Post 7', text: 'Text 7', author: user, created_at: 1.day.ago)
+      user.update(name: 'Updated Name', bio: 'it me again lorem ipsum')
+
+      recent_posts = user.recent_posts(3)
+      expect(recent_posts.count).not_to eq(5)
+      expect(recent_posts.map(&:title)).to eq(['Post 7', 'Post 6', 'Post 5'])
+    end
+  end
 end
