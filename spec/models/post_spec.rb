@@ -63,4 +63,33 @@ RSpec.describe Post, type: :model do
       expect(post.likes_counter).to eq(0)
     end
   end
+  describe '#recent_comments' do
+    it 'returns a limited number of recent comments' do
+      user = User.create(name: 'John', bio: 'I love to try new things')
+      post = Post.create(title: 'Post 1', text: 'Text 1', author: user, created_at: 4.days.ago)
+      Comment.create(post:, author: user, created_at: 5.days.ago)
+      Comment.create(post:, author: user, created_at: 4.days.ago)
+      Comment.create(post:, author: user, created_at: 3.days.ago)
+      Comment.create(post:, author: user, created_at: 2.days.ago)
+      Comment.create(post:, author: user, created_at: 1.days.ago)
+
+      recent_comments = post.recent_comments(5)
+      expect(recent_comments.count).to eq(5)
+    end
+    it 'does not return more that 5 comments' do
+      user = User.create(name: 'John', bio: 'I love to try new things')
+      Post.create(title: 'Post 1', text: 'Text 1', author: user, created_at: 4.days.ago)
+      post = Post.create(title: 'Post 1', text: 'Text 1', author: user, created_at: 4.days.ago)
+      Comment.create(post:, author: user, created_at: 5.days.ago)
+      Comment.create(post:, author: user, created_at: 4.days.ago)
+      Comment.create(post:, author: user, created_at: 3.days.ago)
+      Comment.create(post:, author: user, created_at: 2.days.ago)
+      Comment.create(post:, author: user, created_at: 1.days.ago)
+      Comment.create(post:, author: user, created_at: 1.days.ago)
+      Comment.create(post:, author: user, created_at: 1.days.ago)
+
+      recent_comments = post.recent_comments(5)
+      expect(recent_comments.count).not_to eq(7)
+    end
+  end
 end
