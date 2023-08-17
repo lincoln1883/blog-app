@@ -27,7 +27,7 @@
 
 
 # Blog App <a name="about-project"></a>
-This Blog app is designed to build familiarity with the Ruby on Rails Full-stack framework, and its concepts and vast echo system. We will cover databases using active records migrations and models using convention over configuration.
+This Blog app is designed to build familiarity with the Ruby on Rails Full-stack framework, and its concepts and vast echo system. We will cover databases using active records migrations and models using convention over configuration. Then setup test using RSpec testing library.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -46,10 +46,18 @@ This Blog app is designed to build familiarity with the Ruby on Rails Full-stack
     <li><a href="https://rubyonrails.org/">Ruby</a></li>
   </ul>
 </details>
+<details>
+<summary>RSpec</summary>
+  <ul>
+    <li><a href="https://rspec.info/">RSpec</a></li>
+  </ul>
+</details>
 
 ### Key Features <a name="key-features"></a>
 
 - [ ] Creating a data model.
+- [ ] Validations and Model specs. 
+- [ ] Processing data in models.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -72,6 +80,9 @@ In order to run this project you need:
 ```
 ```sh 
  gem install rails
+```
+```sh 
+ gem install rails-rspec
 ```
 ### Setup
 Clone this repository to your desired folder:
@@ -99,7 +110,9 @@ your default browser should be opened in this moment.
 ### Run tests
 
 You can run tests with the following command:
-**no test available**
+```sh 
+  rspec
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,8 +127,7 @@ You can run tests with the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Validations and Model specs.**
-- **Processing data in models.**
+
 - **Setup and controllers.**
 - **Controllers specs.**
 - **Views.**
