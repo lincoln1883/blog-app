@@ -58,6 +58,7 @@ This Blog app is designed to build familiarity with the Ruby on Rails Full-stack
 - [ ] Creating a data model.
 - [ ] Validations and Model specs. 
 - [ ] Processing data in models.
+- [ ] Setup and controllers.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +129,7 @@ You can run tests with the following command:
 ## 🔭 Future Features <a name="future-features"></a>
 
 
-- **Setup and controllers.**
+
 - **Controllers specs.**
 - **Views.**
 - **Forms.**
