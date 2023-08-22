@@ -1,6 +1,5 @@
 <div>
   <h1>User Show Page</h1>
-  <div>
     <div>
       <h3><%= @users.name %></h3>
       <p>number of posts:<%= @users.posts.count %></p>
@@ -8,23 +7,12 @@
       <p><%= @users.bio %></p>
     </div>
     <div>
-
+      <% @users.posts.each do |post| %>
+        <h5>Post # <%= post.id %></h5>
+        <p><%= post.title %></p>
+        <span>Comments: <%= post.comments_counter %></span>
+        <span>Likes: <%= post.likes_counter %></span>
+      <% end %>
     </div>
-    <div>
-      <h5>Post 1</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-    </div>
-    <div>
-      <h5>Post 2</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-    </div>
-    <div>
-      <h5>Post 3</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-    </div>
-  </div>
-  <button> Show more</button>
+  <button>Show more</button>
 </div>
