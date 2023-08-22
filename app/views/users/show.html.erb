@@ -1,18 +1,18 @@
 <div>
   <h1>User Show Page</h1>
     <div>
-      <h3><%= @users.name %></h3>
-      <p>number of posts:<%= @users.posts.count %></p>
+      <h3><%= @user.name %></h3>
+      <p>number of posts:<%= @user.posts.count %></p>
       <h3>Bio</h3>
-      <p><%= @users.bio %></p>
+      <p><%= @user.bio %></p>
     </div>
     <div>
-      <% @users.posts.each do |post| %>
+      <% @user.recent_posts.each do |post| %>
         <h5>Post # <%= post.id %></h5>
         <p><%= post.title %></p>
         <span>Comments: <%= post.comments_counter %></span>
         <span>Likes: <%= post.likes_counter %></span>
       <% end %>
     </div>
-  <button>Show more</button>
+  <button>See all posts</button>
 </div>
