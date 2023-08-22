@@ -59,6 +59,7 @@ This Blog app is designed to build familiarity with the Ruby on Rails Full-stack
 - [ ] Validations and Model specs. 
 - [ ] Processing data in models.
 - [ ] Setup and controllers.
+- [ ] Controllers specs.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,7 +131,7 @@ You can run tests with the following command:
 
 
 
-- **Controllers specs.**
+
 - **Views.**
 - **Forms.**
 - **Integration specs for Views and fixing n+1 problems.**
