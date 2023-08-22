@@ -59,7 +59,7 @@ This Blog app is designed to build familiarity with the Ruby on Rails Full-stack
 - [ ] Validations and Model specs. 
 - [ ] Processing data in models.
 - [ ] Setup and controllers.
-- [ ] Controllers specs.**
+- [ ] Controllers specs.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
