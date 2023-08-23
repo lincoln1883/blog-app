@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get '/users/:id/posts', to: 'posts#index'
-  get '/users/:author_id/posts/new', to: 'posts#new', as: :post
+
+  post '/users/:author_id/posts', to: 'posts#create', as: :user_posts
+  get '/users/:author_id/posts/new', to: 'posts#new', as: :current_user_posts
   get '/users/:author_id/posts/:id', to: 'posts#show'
   get '/users/:id', to: 'users#show'
-  root 'users#index'
+  get '/users/:id/posts', to: 'posts#index'
+
+  root  'users#index'
 end
