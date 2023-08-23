@@ -1,0 +1,20 @@
+<h1>New comment</h1>
+
+<%= form_with(model: @post ,url: post_path) do |form| %>
+  <% if form.object.errors.any? %>
+    <div>
+      <%form.object.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <%end %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div >
+    <%= form.label :text %>
+    <%= form.text_area :text %>
+  </div>
+  <%= form.button %>
+<% end %>
