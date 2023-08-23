@@ -16,4 +16,21 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
+
+  def show
+    @user = current_user
+    @post = @user.posts.set_post
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
+  private
+
+  def posts_params
+    params.require(:post).permit(:title, :text, :author_id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 end
