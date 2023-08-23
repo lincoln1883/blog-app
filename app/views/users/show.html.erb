@@ -1,35 +1,19 @@
 <div>
   <h1>User Show Page</h1>
-  <div>
     <div>
-      <h3>User name</h3>
-      <p>number of posts: x</p>
-    </div>
-    <div>
+      <img src="<%= @user.photo %>" alt="user image">
+      <h3><%= @user.name %></h3>
+      <p>number of posts:<%= @user.posts.count %></p>
       <h3>Bio</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <p><%= @user.bio %></p>
     </div>
     <div>
-      <h5>Post 1</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
+      <% @user.recent_posts.each do |post| %>
+        <h5>Post # <%= post.id %></h5>
+        <p><%= post.title %></p>
+        <span>Comments: <%= post.comments_counter %></span>
+        <span>Likes: <%= post.likes_counter %></span>
+      <% end %>
     </div>
-    <div>
-      <h5>Post 2</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-    </div>
-    <div>
-      <h5>Post 3</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-    </div>
-  </div>
-  <button> Show more</button>
+  <button>See all posts</button>
 </div>

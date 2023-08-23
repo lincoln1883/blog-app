@@ -2,37 +2,23 @@
   <h1>Posts index page</h1>
   <div>
     <div>
-      <h3>User name</h3>
-      <p>number of posts: x</p>
+        <img src="<%= @user.photo %>" alt="user image">
+        <h3><%= @user.name %></h3>
+        <p>number of posts: <%= @user.posts.count %></p>
     </div>
     <div>
-      <h5>Post 1</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-      <span>Comments: x</span>
-      <span>Likes: y</span>
+      <% @user.posts.each do |post| %>
+        <h5>Post # <%= post.id %></h5>
+        <p><%= post.title %></p>
+        <span>Comments: <%= post.comments_counter %></span>
+        <span>Likes: <%= post.likes_counter %></span>
+        <ul>
+          <% post.recent_comments.each do |comment| %>
+            <li><%= comment.author.name %> : <%= comment.text %></li>
+          <% end %>
+        </ul>
     </div>
-    <div>
-      <p>Username: Comment 1</p>
-      <p>Username: Comment 2</p>
-      <p>Username: Comment 3</p>
-      <p>Username: Comment 4</p>
-      <p>Username: Comment 5</p>
-    </div>
-    <div>
-      <h5>Post 2</h5>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-      <span>Comments: x</span>
-      <span>Likes: y</span>
-    </div>
-    <div>
-      <p>Username: Comment 1</p>
-      <p>Username: Comment 2</p>
-      <p>Username: Comment 3</p>
-      <p>Username: Comment 4</p>
-      <p>Username: Comment 5</p>
-    </div>
+    <% end %>
   </div>
   <button>Pagination</button>
 </div>
