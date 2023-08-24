@@ -2,16 +2,23 @@
   <h1>Posts show page</h1>
   <div>
       <h3>Post <%= @post.id %> by <%= @post.author.name %></h3>
-
-    <span>Comments: <%= @post.comments_counter %></span>
-    <span>Likes: <%= @post.likes_counter %></span>
+    <div>
+      <span>Comments: <%= @post.comments_counter %></span>
+      <span>Likes: <%= @post.likes_counter %></span>
+    </div>
     <p>
      <%= @post.text %>
+      <%= form_with url: user_post_likes_path(@post.author, @post), method: :post, remote: true do |form| %>
+        <%= form.hidden_field :author_id, value: current_user.id %>
+        <%= form.hidden_field :post_id, value: @post.id %>
+        <%= form.submit "Like" %>
+      <% end %>
+      <%= link_to 'Add a comment', new_author_post_comments_path %>
     </p>
     <div>
       <% @post.comments.each do |comment| %>
         <p><%= comment.author.name %> : <%= comment.text %></p>
-      <% end %>
+    <% end %>
     </div>
   </div>
 </div>
