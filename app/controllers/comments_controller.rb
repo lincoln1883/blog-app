@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.author = @user
 
     if @comment.save
-      redirect_to root_path, notice: 'Comment successfully created.'
+      redirect_to current_user_posts_all_path, notice: 'Comment successfully created.'
     else
       redirect_to user_posts_path, notice: 'Comment not created'
     end
