@@ -1,17 +1,39 @@
-<div>
-  <h1>Posts show page</h1>
-  <div>
-      <h3>Post <%= @post.id %> by <%= @post.author.name %></h3>
-
-    <span>Comments: <%= @post.comments_counter %></span>
-    <span>Likes: <%= @post.likes_counter %></span>
-    <p>
-     <%= @post.text %>
-    </p>
+<div class="h-full w-full flex flex-col gap-2">
+  <div class="flex justify-between p-2">
+    <h3 class="font-medium">Post <%= @post.id %> by <%= @post.author.name %></h3>
     <div>
-      <% @post.comments.each do |comment| %>
-        <p><%= comment.author.name %> : <%= comment.text %></p>
-      <% end %>
+      <span>Comments: <%= @post.comments_counter %></span>
+      <span>Likes: <%= @post.likes_counter %></span>
     </div>
   </div>
+  <div class="flex flex-col shadow-2xl p-2">
+    <p>
+      <%= @post.text %>
+    </p>
+    <div class="flex justify-center gap-2">
+      <button class="text-gray-900 bg-white hover:bg-gray-100
+       border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100
+       font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+       dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900
+       dark:hover:bg-gray-200 mb-2" type="submit">
+        <%= form_with url: user_post_likes_path(@post.author, @post), method: :post, remote: true do |form| %>
+          <%= form.hidden_field :author_id, value: current_user.id %>
+          <%= form.hidden_field :post_id, value: @post.id %>
+          <%= form.submit "Like" %>
+        <% end %>
+      </button>
+      <button class="text-gray-900 bg-white hover:bg-gray-100
+       border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100
+       font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+       dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900
+       dark:hover:bg-gray-200 mb-2" type="button">
+        <%= link_to 'Add a comment', new_author_post_comments_path %>
+      </button>
+      </div>
+    </div>
+    <div class="font-medium text-sm shadow-2xl p-2">
+      <% @post.comments.each do |comment| %>
+        <p><%= comment.author.name %> : <%= comment.text %></p>
+    <% end %>
+    </div>
 </div>

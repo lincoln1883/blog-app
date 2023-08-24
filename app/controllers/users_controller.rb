@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @user = User.all
+    @user = User.where(id: current_user)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
+    redirect_to root_path, notice: 'Record not found'
   end
 end
