@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(posts_params)
+    @user = current_user
+    @post = @user.posts.build(posts_params)
     if @post.save
       redirect_to root_path
     else
@@ -20,18 +21,14 @@ class PostsController < ApplicationController
 
   def show
     @user = current_user
-    @post = @user.posts.set_post
+    @post = @user.posts.find(params[:post_id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
+    redirect_to root_path, notice: 'The post was not found'
   end
 
   private
 
   def posts_params
-    params.require(:post).permit(:title, :text, :author_id)
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
+    params.require(:post).permit(:title, :text)
   end
 end
