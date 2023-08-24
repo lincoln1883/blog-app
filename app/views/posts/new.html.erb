@@ -1,4 +1,4 @@
-<h1>New Post</h1>
+<h1 class="text-center text-4xl">Create a Post</h1>
 
 <%= form_with model: @post,url: user_posts_path(@user), method: :post do |form| %>
   <% if form.object.errors.any? %>
@@ -8,13 +8,24 @@
       <% end %>
     </div>
   <%end %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="mt-4">
+    <%= form.label :title, class: 'block mb-2 text-sm font-medium'%>
+    <%= form.text_field :title , placeholder: 'Title', class: 'block p-2.5 w-full text-sm text-gray-900 bg-gray-50
+     rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500
+     dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'%>
   </div>
-  <div >
-    <%= form.label :text %>
-    <%= form.text_area :text %>
+  <div class="mt-4">
+    <%= form.label :text,class: 'block mb-2 text-sm font-medium'%>
+    <%= form.text_area :text, placeholder: 'Your text here...',
+                       class: 'block p-2.5 w-full text-sm text-gray-900 bg-gray-50
+     rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500
+      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'%>
   </div>
-  <%= form.submit %>
+  <button class="text-gray-900 bg-white mt-4 hover:bg-gray-100
+       border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100
+       font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+       dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900
+       dark:hover:bg-gray-200 mb-2" type="button">
+    <%= form.submit %>
+  </button>
 <% end %>
