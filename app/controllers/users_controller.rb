@@ -6,6 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = current_user
   rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, notice: 'Record not found'
+    redirect_to root_path, flash[:alert] = 'Could not find user'
   end
 end

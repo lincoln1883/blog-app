@@ -7,10 +7,10 @@ class PostsController < ApplicationController
     @user = current_user
     @post = @user.posts.build(posts_params)
     if @post.save
-      redirect_to root_path
+      redirect_to user_path(current_user.id), notice: 'Post was successfully created'
     else
       render :new, status: :unprocessable_entity
-      flash.now[:error] = 'There was an error saving this post.'
+      flash[:alert] = 'There was an error saving this post.'
     end
   end
 
@@ -21,9 +21,9 @@ class PostsController < ApplicationController
 
   def show
     @user = current_user
-    @post = @user.posts.find(params[:post_id])
+    @post = @user.posts.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, notice: 'The post was not found'
+    redirect_to root_path
   end
 
   private

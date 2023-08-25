@@ -6,9 +6,9 @@ class LikesController < ApplicationController
 
     if @like.save
       @like.send(:increment_likes_counter)
-      redirect_to user_post_likes_path, notice: 'Success'
+      redirect_to user_post_likes_path
     else
-      redirect_to root_path, notice: 'Like could not be added'
+      redirect_to root_path
     end
   end
 end
