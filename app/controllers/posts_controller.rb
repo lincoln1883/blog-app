@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   def index
-    @user = current_user
+    @user = User.find(params[:user_id])
   end
 
   def create
-    @user = current_user
-    @post = @user.posts.build(posts_params)
+    @user = User.find(params[:id])
+    @post = current_user.posts.build(posts_params)
     if @post.save
       redirect_to user_path(current_user.id), notice: 'Post was successfully created'
     else
@@ -15,12 +15,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @user = User.find(params[:user_id])
     @post = Post.new
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
