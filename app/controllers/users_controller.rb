@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @user = User.where(id: current_user)
+    @user = User.all
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @post = current_user.posts
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, flash[:alert] = 'Could not find user'
   end
