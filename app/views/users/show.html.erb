@@ -4,7 +4,7 @@
     <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="<%= @user.photo %>" alt="user image">
     <div class="flex flex-col justify-between p-4 leading-normal w-full h-40">
       <h5 class="mb-2 text-4xl font-bold tracking-tight"><%= @user.name %></h5>
-      <p class="mb-3 text-right font-normal">number of posts: <%= @user.posts.count %></p>
+      <p class="mb-3 text-right font-normal">number of posts: <%= @user.posts_counter %></p>
     </div>
   </div>
   <div class="flex flex-col shadow-2xl p-4 h-50 mt-4 border-gray-100">
@@ -36,7 +36,7 @@
        font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
        dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900
        dark:hover:bg-gray-200 mb-2" type="button">
-      <%= link_to 'Add a post', new_user_post_path(current_user) %>
+      <%= link_to 'Add a post', new_user_post_path(@user.id) %>
     </button>
   </div>
 </div>
