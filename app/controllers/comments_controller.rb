@@ -12,9 +12,10 @@ class CommentsController < ApplicationController
     @comment.author = @user
 
     if @comment.save
-      redirect_to current_user_posts_all_path, notice: 'Comment successfully created.'
+      redirect_to user_posts_url, notice: 'Comment successfully created.'
     else
-      render 'comments/new', notice: 'Comment cannot be empty.'
+      render :new, status: :unprocessable_entity
+      flash[:alert] = 'There was an error saving this comment.'
     end
   end
 
