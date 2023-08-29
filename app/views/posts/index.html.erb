@@ -4,10 +4,10 @@
       <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="<%= @user.photo %>" alt="user image">
       <div class="flex flex-col justify-between p-4 leading-normal w-full h-40">
         <h5 class="mb-2 text-4xl font-bold tracking-tight"><%= @user.name %></h5>
-        <p class="mb-3 text-right font-normal">number of posts: <%= @user.posts.count %></p>
+        <p class="mb-3 text-right font-normal">number of posts: <%= @user.posts_counter %></p>
       </div>
     </div>
-    <% @user.recent_posts.each_with_index do |post, index| %>
+    <% @user.posts.each_with_index do |post, index| %>
     <div class="shadow-2xl">
       <%= link_to user_post_path(user_id: @user.id, id: post.id), remote: true do %>
         <div class="flex flex-col mt-4 px-5 pb-3">
