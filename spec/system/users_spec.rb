@@ -22,9 +22,14 @@ RSpec.describe 'Users/index', type: :system do
       visit '/users'
       expect(page).to have_content("number of posts: #{user.posts_counter}")
     end
-    # it 'should redirect to the user show page' do
-    #   visit '/users'
-    #   expect(page).to have_current_path("/users/#{user.id}")
-    # end
+    it 'should redirect to the user show page' do
+      user = User.create(name: 'Tommy', bio: 'it me again', photo: 'https://picsum.photos/200/300', posts_counter: 1)
+      visit '/users'
+      within '.card', text: user.name do
+        click_link 'See posts'
+      end
+      expect(current_path).to eq(user_path(user.id))
+      expect(page).to have_content(user.name)
+    end
   end
 end
