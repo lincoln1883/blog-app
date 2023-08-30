@@ -50,5 +50,13 @@ RSpec.describe 'Posts/Show', type: :system do
       end
     end
 
+    it 'should display button for viewing all user\'s posts' do
+      expect(page).to have_link('See all posts')
+    end
+    
+    it 'should redirect to the user\'s post' do
+      expect(page).to have_link('See all posts')
+    end
+
   end
 end
