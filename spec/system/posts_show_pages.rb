@@ -35,5 +35,20 @@ RSpec.describe 'Posts/Show', type: :system do
         expect(page).to have_content(comment.text)
       end
     end
+
+    it 'should display number of posts' do
+      expect(page).to have_content("number of posts: #{user.posts_counter}")
+    end
+    
+    it 'should display Bio' do
+      expect(page).to have_content(user.bio)
+    end
+    
+    it 'should display user\'s first 3 posts' do
+      user.posts.limit(3).each do |post|
+        expect(page).to have_content(post.title)
+      end
+    end
+
   end
 end
