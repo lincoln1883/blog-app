@@ -20,7 +20,7 @@ RSpec.describe 'Post/Index', type: :system do
     end
     it 'should display number of posts' do
       visit user_posts_path(user.id)
-      expect(page).to have_content("number of posts: #{2}")
+      expect(page).to have_content('number of posts: 2')
     end
     it 'should display the Post title' do
       visit user_posts_path(user.id)
