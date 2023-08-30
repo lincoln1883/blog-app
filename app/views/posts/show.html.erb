@@ -1,6 +1,6 @@
 <div class="h-full w-full shadow-2xl flex flex-col gap-2">
   <div class="flex justify-between p-2">
-    <h3 class="font-medium">Post # <%= @post.author.posts_counter + 1 %> by <%= @post.author.name %></h3>
+    <h3 class="font-medium"><%= @post.title %> by <%= @post.author.name %></h3>
     <div>
       <span>Comments: <%= @post.comments_counter %></span>
       <span>Likes: <%= @post.likes_counter %></span>
