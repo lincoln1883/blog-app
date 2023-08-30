@@ -20,6 +20,5 @@ RSpec.describe 'Users/show', type: :system do
     it 'should display username' do
       expect(page).to have_content(user.name)
     end
-
   end
 end
