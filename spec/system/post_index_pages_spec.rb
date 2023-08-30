@@ -7,43 +7,47 @@ RSpec.describe 'Post/Index', type: :system do
   describe 'Index page' do
     let(:user) { User.create(name: 'Test User', bio: 'its me again jah jah', photo: 'https://picsum.photos/200/300', posts_counter: 1) }
     let!(:post) { user.posts.create(title: 'Test Post', text: 'This is the body of the post.') }
-    it 'displays user information and post details' do
+    let!(:comment) { post.comments.create(text: 'Test Comment', post_id: post.id, author_id: user.id) }
+    it "I can see the user's profile picture." do
       visit user_posts_path(user.id)
+      expect(page).to have_selector("img[src='#{user.photo}']")
     end
-    it 'should display username' do
+    it "I can see the user's username." do
       visit user_posts_path(user.id)
       expect(page).to have_content(user.name)
     end
-    it 'should display photo' do
+    it 'I can see the number of posts the user has written.' do
       visit user_posts_path(user.id)
-      expect(page).to have_selector("img[src*='#{user.photo}']")
+      expect(page).to have_content(user.posts_counter)
     end
-    it 'should display number of posts' do
-      visit user_posts_path(user.id)
-      expect(page).to have_content('number of posts: 2')
-    end
-    it 'should display the Post title' do
+    it "I can see a post's title" do
       visit user_posts_path(user.id)
       expect(page).to have_content(post.title)
     end
-    it 'should display Post text' do
+    it "I can see some of the post's body." do
       visit user_posts_path(user.id)
       expect(page).to have_content(post.text)
     end
-    it 'should display comments count' do
+    it 'I can see the first comments on a post.' do
+      visit user_posts_path(user.id)
+      expect(page).to have_content(comment.text)
+      expect(page).to have_content(comment.text)
+      expect(page).to have_content(comment.text)
+    end
+    it 'I can see how many comments a post has' do
       visit user_posts_path(user.id)
       expect(page).to have_content(post.comments_counter)
     end
-    it 'should display likes count' do
+    it 'I can see how many likes a post has' do
       visit user_posts_path(user.id)
       expect(page).to have_content(post.likes_counter)
     end
-    it 'should display pagination button' do
+    it 'I can see a section for pagination if there are more posts than fit on the view' do
       visit user_posts_path(user.id)
       expect(page).to have_content('Previous')
       expect(page).to have_content('Next')
     end
-    it 'should redirect to the user show page' do
+    it "When I click on a post, it redirects me to that post's show page" do
       visit user_posts_path(user.id)
       within '.shadow-2xl', text: post.title do
         click_link 'Read more'
