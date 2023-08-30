@@ -10,7 +10,6 @@
     - [🛠 Built With](#built-with)
         - [Tech Stack](#tech-stack)
         - [Key Features ](#key-features-)
-    - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -61,11 +60,6 @@ This Blog app is designed to build familiarity with the Ruby on Rails Full-stack
 - [ ] Setup and controllers.
 - [ ] Controllers specs.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-You can see the live demo here: N/A
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
