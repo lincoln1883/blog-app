@@ -59,7 +59,10 @@ This Blog app is designed to build familiarity with the Ruby on Rails Full-stack
 - [ ] Processing data in models.
 - [ ] Setup and controllers.
 - [ ] Controllers specs.
-
+- [ ] Views.
+- [ ] Forms.
+- [ ] Integration specs for Views and fixing n+1 problems.
+- [ ] Add Devise.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -126,10 +129,7 @@ You can run tests with the following command:
 
 
 
-- **Views.**
-- **Forms.**
-- **Integration specs for Views and fixing n+1 problems.**
-- **Add Devise.**
+
 - **Add authorization rules.**
 - **Add API endpoints.**
 - **API documentation.**
