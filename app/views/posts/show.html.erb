@@ -34,6 +34,9 @@
     <div class="font-medium text-sm p-2">
       <% @post.comments.each do |comment| %>
         <p><%= comment.author.name %> : <%= comment.text %></p>
+        <% if can? :destroy, comment %>
+          <%= button_to 'Delete', user_post_comment_path(user_id: @user.id, post_id: @post.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
     <% end %>
     </div>
 </div>
