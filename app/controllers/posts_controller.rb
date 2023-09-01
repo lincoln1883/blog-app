@@ -8,15 +8,15 @@ class PostsController < ApplicationController
     @post = Post.includes(:author, :comments, :likes).where(author_id: @user.id)
   end
 
-  def create
-    @user = User.find(params[:user_id])
-    @post = @user.posts.build(posts_params)
-    if @post.save
-      redirect_to user_path(current_user.id), notice: 'Post was successfully created'
-    else
-      render :new, status: :unprocessable_entity
-      flash[:alert] = 'There was an error saving this post.'
-    end
+  def create   
+     @post = Post.new(post_params)
+     @post.author = current_user    
+     if @post.save      
+      redirect_to user_path(current_user.id), notice: 'Post was successfully created'    
+     else      
+      flash[:alert] = 'There was an error saving this post.'      
+      render :new, status: :unprocessable_entity    
+     end  
   end
 
   def new
