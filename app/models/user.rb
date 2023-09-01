@@ -11,6 +11,23 @@ class User < ApplicationRecord
   validates :posts_counter, numericality: { integer: true, greater_than_or_equal_to: 0 }
   validates :bio, presence: true, length: { minimum: 5, maximum: 500 }
 
+  before_create :set_default_photo
+  before_create :set_default_role
+
+  ROLES = %i[admin user].freeze
+
+  def admin?
+    role == 'admin'
+  end
+
+  def set_default_photo
+    self.photo ||= "https://randomuser.me/api/portraits/men/#{rand(1..100)}.jpg"
+  end
+
+  def set_default_role
+    self.role ||= 'user'
+  end
+
   def recent_posts
     posts.order(created_at: :desc).limit(3)
   end
