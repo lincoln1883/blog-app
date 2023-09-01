@@ -16,6 +16,9 @@
             <span>Comments: <%= post.comments_counter %></span>
             <span>Likes: <%= post.likes_counter %></span>
           </div>
+          <% if can? :destroy, post %>
+            <%= button_to 'Delete', user_post_path(@user.id, post.id), method: :delete, data:  { confirm: 'Are you sure?' } %>
+          <% end %>
         </div>
         <div class="mt-4 px-5 pb-3">
           <ul class="">
