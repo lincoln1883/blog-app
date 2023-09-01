@@ -1,6 +1,6 @@
 <h1 class="text-center text-4xl">Create a Post</h1>
 
-<%= form_with model: @post,url: user_posts_path(@user), method: :post do |form| %>
+<%= form_with model: @post,url: user_posts_path(current_user), method: :post do |form| %>
   <% if form.object.errors.any? %>
     <div>
       <%form.object.errors.full_messages.each do |message| %>

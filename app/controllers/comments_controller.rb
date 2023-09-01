@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @user = current_user
     @post = Post.find(params[:post_id])
@@ -16,6 +18,15 @@ class CommentsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
       flash[:alert] = 'There was an error saving this comment.'
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'Failed to delete the post.'
     end
   end
 

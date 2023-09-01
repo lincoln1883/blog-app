@@ -1,21 +1,36 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   def index
     @user = User.includes(:comments).find(params[:user_id])
+    @user = User.includes(:posts).find(params[:user_id])
+    @post = Post.includes(:author, :comments, :likes).where(author_id: @user.id)
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @post = @user.posts.build(posts_params)
+    @post = Post.new(post_params)
+    @post.author = current_user
     if @post.save
       redirect_to user_path(current_user.id), notice: 'Post was successfully created'
     else
-      render :new, status: :unprocessable_entity
       flash[:alert] = 'There was an error saving this post.'
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.comments.destroy_all
+    @post.likes.destroy_all
+    if @post.destroy
+      redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'Failed to delete the post.'
     end
   end
 
   def new
-    @user = User.find(params[:user_id])
     @post = Post.new
   end
 
@@ -28,7 +43,7 @@ class PostsController < ApplicationController
 
   private
 
-  def posts_params
-    params.require(:post).permit(:title, :text)
+  def post_params
+    params.require(:post).permit(:title, :text, :author_id)
   end
 end
