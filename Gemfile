@@ -75,6 +75,8 @@ end
 
 gem 'devise'
 
+gem 'active_model_serializers', '~> 0.10.13'
+
 gem 'cancancan', '~> 3.5'
 
 gem 'tailwindcss-rails', '~> 2.0'
