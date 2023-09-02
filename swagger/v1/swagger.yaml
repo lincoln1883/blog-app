@@ -1,0 +1,164 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{user_id}/posts/{post_id}/comments":
+    post:
+      summary: Creates a Comment
+      tags:
+      - Comments
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+        - name: post_id
+          in: path
+          required: true
+      responses:
+        '201':
+          description: Comment created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+              required:
+              - id
+              - author_id
+              - post_id
+              - text
+          application/xml:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+              required:
+              - id
+              - author_id
+              - post_id
+              - text
+    get:
+      summary: Retrieves all Comments for a specific Post
+      tags:
+      - Comments
+      responses:
+        '200':
+          description: Users found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    text:
+                      type: string
+                    author_id:
+                      type: integer
+                    post_id:
+                      type: integer
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - author_id
+                  - post_id
+                  - text
+                  - created_at
+                  - updated_at
+        '404':
+          description: Users not found
+  "/api/v1/users/{user_id}/posts":
+    get:
+      summary: Retrieves all Posts for a specific User
+      tags:
+      - Posts
+      responses:
+        '200':
+          description: Users found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    author_id:
+                      type: integer
+                    title:
+                      type: string
+                    text:
+                      type: string
+                    comments_counter:
+                      type: integer
+                    likes_counter:
+                      type: integer
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - title
+                  - text
+                  - comments_counter
+                  - likes_counter
+                  - created_at
+                  - updated_at
+        '404':
+          description: Users not found
+  "/api/v1/users":
+    get:
+      summary: List all users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    bio:
+                      type: string
+                    photo:
+                      type: string
+                    role:
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - bio
+                  - email
+        '404':
+          description: Users not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
