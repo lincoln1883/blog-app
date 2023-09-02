@@ -94,4 +94,3 @@ RSpec.describe 'Comments API', type: :request do
     end
   end
 end
-
