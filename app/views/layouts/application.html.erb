@@ -17,8 +17,9 @@
       <p class="notice text-teal-900"><%= notice %></p>
       <p class="alert text-red-700"><%= alert %></p>
     </div>
-    <main class="container mx-auto mt-28 px-5 flex flex-col">
+    <main class="container mx-auto mt-28 px-5 flex flex-col h-screen">
       <%= yield %>
     </main>
+  <%= render 'shared/footer' %>
   </body>
 </html>
