@@ -11,13 +11,23 @@
           <p class="mb-3 text-right font-normal">number of posts: <%= user.posts_counter %></p>
         </div>
       </div>
-      <button id="user-post" class="text-gray-900 bg-white mt-4 hover:bg-gray-100
+      <% if user.posts.empty? %>
+        <button class="text-gray-900 bg-white hover:bg-gray-100
+         border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100
+         font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+         dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900
+         dark:hover:bg-gray-200 mb-2 mt-4" type="button">
+          <%= link_to 'Add a post', new_user_post_path(user.id) %>
+        </button>
+      <% else %>
+        <button id="user-post" class="text-gray-900 bg-white mt-4 hover:bg-gray-100
          border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100
          font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
          dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900
          dark:hover:bg-gray-200 mb-2" type="button">
-        <%= link_to 'See posts', user_path(user.id) %>
-      </button>
+          <%= link_to 'See posts', user_path(user.id) %>
+        </button>
+      <% end %>
     </div>
   <% end %>
 </div>
