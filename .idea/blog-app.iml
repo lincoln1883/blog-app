@@ -216,4 +216,7 @@
       <RakeTaskImpl id="rake" />
     </option>
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="033b6786-a8ad-4188-9546-b58aa734d188" />
+  </component>
 </module>
